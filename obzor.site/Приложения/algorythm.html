@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Паспорт</title>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
+</head>
+<nav>
+    <p><a href="passport.html">Паспорт</a></p>
+    <p><a href="passport_find_edit copy.html">Паспорт + js</a></p>
+    <p>Решение алгоритмической задачи</p>
+</nav>
+
+<body>
+    <p>Дано следующее условие: Известен год.  Определить, будет ли этот год високосным, и к какому веку этот год относится.</p>
+    <p>Ршение задачи складываается из вух частей: определения високосен ли год и опрдеелния века.</p>
+    <p>1. Високосным является такой год, который целочисленно делится на 400 или целочисленно делится 4 не делится на 100. Эти данные будут храниться в переменной типа boolean. Запись и извлечение значния из перемнной происходят с помощью проверки на правдивоссть.</p>
+    <p>2. На приммере любого века (21: 2001 - 2100) можно увидеть, что первые две цифры любого года кроме первого, совпадают с номером века сложенным с 1. Кроме того, нам известно, что номер первого года века делится на 100. Тогда можно вывести формулу: Век равен году целочисленно деленному на 100 плюс проверка того, что целочисленное деление года на 100 не равно нулю. Последнее действие фактичски является проверкой на то, что это первый год века. Реализовано с помощью библиотки math, откуда была взята функция округлления вниз для модеелирования целочисленного деления. </p>
+    <input type="number" name="year">
+    <buttton class="calc">Ok</buttton>
+    <p>Это <span class="leap"></span> год <span class="century"></span> века</p>
+</body>
+<script>
+btnElement = document.querySelector('.calc');
+let year = 0;
+let leap = false;
+let century = 0;
+function calc() {
+    year = parseInt(document.getElementsByName('year')[0].value);
+    if (year % 400 == 0) {
+        leap = true;
+    } else if(year % 100 != 0 && year % 4 == 0) {
+        leap = true;
+    } else {
+        leap = false;
+    }
+    const leap_value = document.getElementsByClassName('leap')[0]
+    if(leap == true) {
+        leap_value.innerText = 'високосный';
+    } else {
+        leap_value.innerText = 'невисокосный';
+    }
+
+    century = math.floor(year / 100) + !(year % 100 == 1);
+    const century_value = document.getElementsByClassName('century')[0]
+    century_value.innerText = century;
+
+}
+btnElement.addEventListener('click', calc)
+</script>
+</html>
